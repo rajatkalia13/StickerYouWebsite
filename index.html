@@ -24,7 +24,26 @@
 
 
   <link rel="icon" type="image/x-icon" href="https://d3ccuprjuqkp1j.cloudfront.net/GeneralImages/favicon.ico">
-
+  <style>
+    .stars-view-media {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .stars-img {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .stars-img.align-items-md-end {
+      align-items: flex-end;
+    }
+    .stars-content {
+      margin-bottom: 10px;
+    }
+    .review-info p {
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -1319,26 +1338,49 @@
         <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
           <h2 class="mb-3 mb-sm-0"> Popular Custom Products</h2>
           <!-- Rating Stars -->
-          <div class="stars-view-media">
-            <div class="stars-img justify-content-start flex-column align-items-start align-items-md-end mb-2">
-              <div class="stars-content mb-2">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </div>
-              <div class="review-info">
-                <p class="ml-0">
-                  4.97/5
-                </p>
-                <p>
-                  <span> 82</span>
-                  Reviews
-                </p>
-              </div>
-            </div>
-          </div>
+          <div id="star-container" class="stars-view-media"></div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const container = document.getElementById('star-container');
+        
+              // Create the main div for star ratings
+              const starsImgDiv = document.createElement('div');
+              starsImgDiv.className = 'stars-img justify-content-start flex-column align-items-start align-items-md-end mb-2';
+        
+              // Create the stars content div
+              const starsContentDiv = document.createElement('div');
+              starsContentDiv.className = 'stars-content mb-2';
+              for (let i = 0; i < 5; i++) {
+                const starIcon = document.createElement('i');
+                starIcon.className = 'fa fa-star';
+                starIcon.setAttribute('aria-hidden', 'true');
+                starsContentDiv.appendChild(starIcon);
+              }
+        
+              // Create the review info div
+              const reviewInfoDiv = document.createElement('div');
+              reviewInfoDiv.className = 'review-info';
+        
+              const ratingParagraph = document.createElement('p');
+              ratingParagraph.className = 'ml-0';
+              ratingParagraph.textContent = '4.9/5';
+        
+              const reviewCountParagraph = document.createElement('p');
+              const reviewCountSpan = document.createElement('span');
+              reviewCountSpan.textContent = '10,202';
+              reviewCountParagraph.appendChild(reviewCountSpan);
+              reviewCountParagraph.appendChild(document.createTextNode(' Customers Reviews'));
+        
+              // Append elements to their respective parents
+              reviewInfoDiv.appendChild(ratingParagraph);
+              reviewInfoDiv.appendChild(reviewCountParagraph);
+        
+              starsImgDiv.appendChild(starsContentDiv);
+              starsImgDiv.appendChild(reviewInfoDiv);
+        
+              container.appendChild(starsImgDiv);
+            });
+          </script>
         </div>
         <div class="row prod-grid-lg d-flex justify-content-start">
           <div class="col-6 col-md-4 col-lg-3 home-feat-prod">
